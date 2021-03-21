@@ -114,6 +114,11 @@ all.config
 # Kdevelop4
 *.kdev4
 
+# out-kernel
+out
+phone_build.sh
+stic-buildbot/config
+
 # fetched Android config fragments
 android/configs/android-*.cfg
 
