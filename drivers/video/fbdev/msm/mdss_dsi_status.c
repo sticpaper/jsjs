@@ -1,4 +1,5 @@
 /* Copyright (c) 2013-2017, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2019 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -137,6 +138,22 @@ void disable_esd_thread(void)
 	if (pstatus_data &&
 	    cancel_delayed_work(&pstatus_data->check_status))
 		pr_debug("esd thread killed\n");
+}
+
+void disable_esd_thread_sync(void)
+{
+	if (pstatus_data) {
+		cancel_delayed_work_sync(&pstatus_data->check_status);
+		pr_debug("esd thread killed\n");
+	}
+}
+
+void enable_esd_thread(void)
+{
+	if (pstatus_data) {
+		schedule_delayed_work(&pstatus_data->check_status, msecs_to_jiffies(interval));
+		pr_debug("esd thread started\n");
+	}
 }
 
 /*
