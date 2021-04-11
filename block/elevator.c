@@ -219,8 +219,8 @@ int elevator_init(struct request_queue *q, char *name)
 		if (!e) {
 			printk(KERN_ERR
 				"Default I/O scheduler not found. " \
-				"Using noop.\n");
-			e = elevator_get("noop", false);
+				"Using cfq.\n");
+			e = elevator_get("cfq", false);
 		}
 	}
 
